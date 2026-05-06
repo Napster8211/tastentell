@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Add the safe area variable for the sticky mobile cart */
+:root {
+  --sat-bottom: env(safe-area-inset-bottom);
+}
