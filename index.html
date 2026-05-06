@@ -2,11 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>taste-n-tell</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <!-- 1. LOCK MOBILE RESPONSIVENESS (Prevents accidental zooming) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- 2. LOCK COLOR SCHEME (Forces light mode so your design stays perfect) -->
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ea580c" /> <!-- Makes the phone browser top bar orange! -->
+    
+    <title>Taste N Tell - Campus Delivery</title>
   </head>
-  <body>
+  <body class="bg-stone-50 text-stone-900 antialiased overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -9,7 +9,7 @@ import {
 // --- SYSTEM CONFIGURATION ---
 const SYSTEM_CONFIG = {
   // CRITICAL: Replace with your actual WhatsApp number for the pitch! (e.g. "23354XXXXXXX")
-  whatsappNumber: "233540000000", 
+  whatsappNumber: "233506728272", 
   businessName: "Taste N Tell",
   deliveryTime: "15–30 mins" 
 };
