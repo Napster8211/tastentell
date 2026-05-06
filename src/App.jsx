@@ -9,7 +9,7 @@ import {
 // --- SYSTEM CONFIGURATION ---
 const SYSTEM_CONFIG = {
   // CRITICAL: Replace with your actual WhatsApp number for the pitch! (e.g. "23354XXXXXXX")
-  whatsappNumber: "233506728272", 
+  whatsappNumber: "233246952225", 
   businessName: "Taste N Tell",
   deliveryTime: "15–30 mins" 
 };
@@ -97,27 +97,19 @@ const DELIVERY_ZONES = [
 
 // --- MAIN APPLICATION COMPONENT ---
 export default function App() {
-  // Global & Network State
   const [isOffline, setIsOffline] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
-  
-  // UI State
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [checkoutStep, setCheckoutStep] = useState(1);
   const [toastMessage, setToastMessage] = useState(null);
-  
-  // Form State & Validation
   const [customerDetails, setCustomerDetails] = useState({ name: '', phone: '', location: '', notes: '' });
   const [formErrors, setFormErrors] = useState({});
-
-  // Order Tracking Mock State
   const [trackingId, setTrackingId] = useState('');
   const [trackingResult, setTrackingResult] = useState(null);
 
-  // Initialization: Load Menu & Network Listeners
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
@@ -145,7 +137,6 @@ export default function App() {
     };
   }, []);
 
-  // Derived State
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.price * item.quantity), 0), [cart]);
   const cartCount = useMemo(() => cart.reduce((count, item) => count + item.quantity, 0), [cart]);
   
@@ -154,10 +145,8 @@ export default function App() {
     return items.sort((a, b) => (a.popular === b.popular ? 0 : a.popular ? -1 : 1));
   }, [activeCategory, menuItems]);
 
-  // --- ACTIONS & HANDLERS ---
   const addToCart = (item) => {
     if (!item.available) return;
-    
     setCart(prev => {
       const existing = prev.find(i => i.id === item.id);
       if (existing) {
@@ -165,7 +154,6 @@ export default function App() {
       }
       return [...prev, { ...item, quantity: 1 }];
     });
-    
     setToastMessage(`Added ${item.name} to order!`);
     setTimeout(() => setToastMessage(null), 3000);
   };
@@ -236,7 +224,6 @@ export default function App() {
     });
     orderText += `---------------------------\n`;
     orderText += `*Subtotal:* GHS ${cartTotal.toFixed(2)}\n`;
-    
     if (customerDetails.notes) {
       orderText += `\n*Special Notes:* _${customerDetails.notes}_\n`;
     }
@@ -269,7 +256,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
       
-      {/* --- SUCCESS TOAST NOTIFICATION --- */}
       {toastMessage && (
         <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[100] bg-stone-900 text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-3 animate-fade-in-down text-sm font-bold w-max max-w-[90vw]">
           <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shrink-0">
@@ -279,7 +265,6 @@ export default function App() {
         </div>
       )}
 
-      {/* --- OFFLINE NOTIFICATION --- */}
       {isOffline && (
         <div className="bg-red-600 text-white py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 z-[60] sticky top-0 w-full animate-fade-in-down">
           <WifiOff size={16} />
@@ -287,7 +272,6 @@ export default function App() {
         </div>
       )}
 
-      {/* --- URGENCY BANNER --- */}
       {!isOffline && (
         <div className="bg-orange-600 text-white text-center py-2 px-4 text-sm font-medium flex items-center justify-center gap-2 z-50 relative">
           <Zap size={16} className="animate-pulse" />
@@ -295,7 +279,6 @@ export default function App() {
         </div>
       )}
 
-      {/* --- NAVIGATION --- */}
       <nav className="sticky top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-sm z-40 border-b border-stone-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -346,7 +329,6 @@ export default function App() {
         )}
       </nav>
 
-      {/* --- HERO SECTION --- */}
       <section className="pt-12 pb-20 md:pt-24 md:pb-32 px-4 bg-gradient-to-br from-amber-50 to-orange-50 relative overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div className="space-y-6 text-center md:text-left">
@@ -384,7 +366,6 @@ export default function App() {
               src="https://images.unsplash.com/photo-1604329760661-e71c0c144ce2?auto=format&fit=crop&w=800&q=80" 
               alt="Delicious Jollof" 
               className="relative z-10 w-full h-[300px] md:h-[500px] object-cover rounded-3xl shadow-xl border-4 border-white"
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/800x550/ffedd5/ea580c?text=Taste+N+Tell+Food' }}
             />
             <div className="absolute -bottom-6 -left-4 md:bottom-8 md:-left-8 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4 border border-stone-100">
               <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0">
@@ -399,7 +380,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* --- MENU SECTION --- */}
       <section id="menu" className="py-20 bg-white px-4 relative scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -432,7 +412,6 @@ export default function App() {
                     alt={item.name} 
                     loading="lazy"
                     className={`w-full h-full object-cover transition-transform duration-500 ${item.available ? 'hover:scale-105' : 'grayscale'}`}
-                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/ffedd5/ea580c?text=Item+Image' }}
                   />
                   {!item.available && (
                     <div className="absolute inset-0 bg-stone-900/40 flex items-center justify-center backdrop-blur-[2px]">
@@ -483,7 +462,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* --- DELIVERY ZONES SECTION --- */}
       <section id="delivery-zones" className="py-16 bg-stone-50 px-4 border-y border-stone-200">
          <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-extrabold text-stone-900 mb-2">Campus Delivery Zones</h3>
@@ -500,7 +478,6 @@ export default function App() {
          </div>
       </section>
 
-      {/* --- ORDER TRACKING (MOCK) --- */}
       <section id="track" className="py-20 bg-white px-4">
         <div className="max-w-2xl mx-auto bg-stone-50 rounded-3xl p-8 shadow-inner border border-stone-200 text-center">
           <div className="w-12 h-12 bg-white text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm border border-stone-100">
@@ -544,7 +521,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
       <footer className="bg-stone-950 text-stone-400 py-10 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2 opacity-80">
@@ -557,7 +533,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* --- FLOATING WHATSAPP BUTTON --- */}
       <a 
         href={`https://wa.me/${SYSTEM_CONFIG.whatsappNumber}?text=Hello%20${SYSTEM_CONFIG.businessName},%20I%20have%20an%20inquiry.`}
         target="_blank"
@@ -571,7 +546,6 @@ export default function App() {
         <MessageCircle size={28} />
       </a>
 
-      {/* --- STICKY MOBILE CART CTA --- */}
       {cartCount > 0 && !isCartOpen && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-40 flex justify-between items-center pb-safe">
           <div className="pl-2">
@@ -587,7 +561,6 @@ export default function App() {
         </div>
       )}
 
-      {/* --- CART / CHECKOUT DRAWER OVERLAY --- */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] flex justify-end">
           <div 
@@ -632,7 +605,6 @@ export default function App() {
                         src={item.image} 
                         alt={item.name} 
                         className="w-16 h-16 object-cover rounded-lg" 
-                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/100x100/ffedd5/ea580c?text=Item' }}
                       />
                       <div className="flex-1 flex flex-col justify-between">
                         <div>
