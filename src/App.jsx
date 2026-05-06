@@ -22,7 +22,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Rice Dishes',
     price: 45.00,
     description: 'Smoky, spicy party jollof served with grilled chicken, coleslaw, and shito.',
-    image: 'https://images.unsplash.com/photo-1604329760661-e71c0c144ce2?auto=format&fit=crop&w=600&q=80',
+    image: '/jollof.jpg', // Local image
     popular: true,
     available: true,
   },
@@ -32,7 +32,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Rice Dishes',
     price: 55.00,
     description: 'Stir-fried rice with beef, chicken, sausage, and fresh vegetables.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80',
+    image: '/fried-rice.jpg', // Local image
     popular: false,
     available: true,
   },
@@ -42,7 +42,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Local Specials',
     price: 35.00,
     description: 'Traditional black-eyed pea stew cooked in palm oil, served with fried ripe plantain.',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    image: '/red-red.jpg', // Local image
     popular: true,
     available: true,
   },
@@ -52,7 +52,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Local Specials',
     price: 70.00,
     description: 'Two balls of soft banku with a large spiced grilled tilapia and fresh hot pepper.',
-    image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80',
+    image: '/banku.jpg', // Local image
     popular: true,
     available: true,
   },
@@ -62,7 +62,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Local Specials',
     price: 60.00,
     description: 'Soft rice balls served with rich groundnut soup and assorted meat. (Sundays Only)',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?auto=format&fit=crop&w=600&q=80',
+    image: '/omotuo.jpg', // Local image
     popular: false,
     available: false,
   },
@@ -72,7 +72,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Sides',
     price: 15.00,
     description: 'Perfectly diced ripe plantains marinated in ginger, onions, and chili, fried to perfection.',
-    image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80',
+    image: '/kelewele.jpg', // Local image
     popular: false,
     available: true,
   },
@@ -82,7 +82,7 @@ const DEFAULT_MENU_ITEMS = [
     category: 'Drinks',
     price: 10.00,
     description: 'Refreshing hibiscus tea brewed with ginger, pineapple, and cloves. Served chilled.',
-    image: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=600&q=80',
+    image: '/drinks.jpg', // Local image
     popular: true,
     available: true,
   }
@@ -363,8 +363,8 @@ export default function App() {
           
           <div className="relative mt-8 md:mt-0 animate-fade-in-up" style={{animationDelay: '200ms'}}>
             <img 
-              src="https://images.unsplash.com/photo-1604329760661-e71c0c144ce2?auto=format&fit=crop&w=800&q=80" 
-              alt="Delicious Jollof" 
+              src="/hero.jpg" 
+              alt="Delicious Food" 
               className="relative z-10 w-full h-[300px] md:h-[500px] object-cover rounded-3xl shadow-xl border-4 border-white"
             />
             <div className="absolute -bottom-6 -left-4 md:bottom-8 md:-left-8 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4 border border-stone-100">
