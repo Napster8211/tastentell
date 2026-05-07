@@ -118,18 +118,9 @@ export default function App() {
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
-    try {
-      const storedMenu = localStorage.getItem('tnt_menu');
-      if (storedMenu) {
-        setMenuItems(JSON.parse(storedMenu));
-      } else {
-        setMenuItems(DEFAULT_MENU_ITEMS);
-        localStorage.setItem('tnt_menu', JSON.stringify(DEFAULT_MENU_ITEMS));
-      }
-    } catch (e) {
-      console.error("Failed to load menu", e);
-      setMenuItems(DEFAULT_MENU_ITEMS);
-    }
+    // CTO FIX: Force the app to always use the fresh local images for the pitch
+    // instead of checking old browser memory.
+    setMenuItems(DEFAULT_MENU_ITEMS);
 
     return () => {
       window.removeEventListener('online', handleOnline);
